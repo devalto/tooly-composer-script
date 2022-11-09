@@ -24,6 +24,10 @@ class Downloader
      */
     public function download($url)
     {
-        return file_get_contents($url);
+		$contents = file_get_contents($url);
+		if ($contents === false) {
+			throw new \Exception("Could not download $url");
+		}
+		return $contents;
     }
 }
